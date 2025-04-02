@@ -1,5 +1,5 @@
 /*
-    Created : 02.04.2025  00:44:05
+    Created : 02.04.2025  23:36:04
 */
 
 #include <bits/stdc++.h>
@@ -86,42 +86,28 @@ inline ll getBit(ll n, ll pos) { return ((n >> pos) & 1); }
 inline ll setBit(ll n, ll pos) { return (n | (1 << pos)); }
 inline ll clearBit(ll n, ll pos) { return (n & (~(1 << pos))); }
 inline ll toggleBit(ll n, ll pos) { return (n ^ (1 << pos)); }
-
+inline ll cell(ll n,ll k){ return n/k + 1;}
 // =-=-=-=-=-=-=-=-=-=-=-=-=-code starts here -=-=-=-=-=-=-=-=-=-=-=-=-= //
-
-unordered_map<string,ll>mpp;
-string fir(string &s);
-string sec(string &s);
-string fir(string &s1){
-    if(s1.size()==0){
-        return "";
-    }
-    s1.erase(s1.begin(),s1.begin()+1);
-    mpp[s1]++;
-    mpp[fir(s1)]++;
-    mpp[sec(s1)]++;
-    return s1;
-}
-string sec(string &s1){
-    if(s1.size()==0){
-        return "";
-    }
-    s1.erase(s1.begin(),s1.begin()+1);
-    mpp[s1]++;
-    mpp[fir(s1)]++;
-    mpp[sec(s1)]++;
-    return s1;
-}
 
 void idharDekh()
 {
-    in(n);
-    str(s);
-    mpp[s]++;
-    mpp[fir(s)]++;
-    mpp[sec(s)]++;
-    cout<<mpp.size()-1<<endl;    
-    mpp.clear();
+    inn(n,k);
+    vin(a,n);
+    srt(a);
+    ll i=0,j=n-1;
+    ll ct=0;
+    while(i<=j){
+        cout<<i<<' '<<j<<' '<<cell(k,a[j])<<endl;
+        i+=cell(k,a[j])-1;
+        if(i<=j){
+        ct++;
+        j--;
+        }
+        else{
+            break;
+        }
+    }
+    out(ct);
 }
 
 signed main()
@@ -129,7 +115,7 @@ signed main()
     auto begin = std::chrono::high_resolution_clock::now();
     King T
     ll t = 1;
-    cin >> t;
+    //cin >> t;
     while (t--)
     {
         idharDekh();

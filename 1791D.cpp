@@ -1,5 +1,5 @@
 /*
-    Created : 02.04.2025  00:44:05
+    Created : 02.04.2025  23:58:12
 */
 
 #include <bits/stdc++.h>
@@ -89,39 +89,31 @@ inline ll toggleBit(ll n, ll pos) { return (n ^ (1 << pos)); }
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-code starts here -=-=-=-=-=-=-=-=-=-=-=-=-= //
 
-unordered_map<string,ll>mpp;
-string fir(string &s);
-string sec(string &s);
-string fir(string &s1){
-    if(s1.size()==0){
-        return "";
-    }
-    s1.erase(s1.begin(),s1.begin()+1);
-    mpp[s1]++;
-    mpp[fir(s1)]++;
-    mpp[sec(s1)]++;
-    return s1;
-}
-string sec(string &s1){
-    if(s1.size()==0){
-        return "";
-    }
-    s1.erase(s1.begin(),s1.begin()+1);
-    mpp[s1]++;
-    mpp[fir(s1)]++;
-    mpp[sec(s1)]++;
-    return s1;
-}
-
 void idharDekh()
 {
     in(n);
     str(s);
-    mpp[s]++;
-    mpp[fir(s)]++;
-    mpp[sec(s)]++;
-    cout<<mpp.size()-1<<endl;    
-    mpp.clear();
+    unordered_map<char,ll>mpp;
+    ll ans=0;
+    ll ct=0;
+    fr(i,0,n){
+        mpp[s[i]]++;
+    }
+    unordered_map<char,ll>mpp2;
+    for(int i=0;i<n;i++){
+        mpp2[s[i]]++;
+        if(mpp2[s[i]]==mpp[s[i]] && mpp[s[i]]>1){
+            ct--;
+        }
+        else{
+            if(mpp2[s[i]]==1 && mpp[s[i]]>1){
+                ct++;
+            }
+        }
+        ans=max(ct,ans);
+    }
+    ll final=ans+mpp.size();
+    out(final);
 }
 
 signed main()

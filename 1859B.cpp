@@ -1,42 +1,20 @@
 /*
-    Code By : Tanishq Shah
-    Created : 01.01.2025  12:45:33 
-    Problem : 1859B
+    Created : 03.04.2025  01:19:20
 */
-
-// --- To see code scroll down --- //
-
 
 #include <bits/stdc++.h>
 using namespace std;
 
-//------all short forms below --------//
-
-#define King(T)                   \
-    ios ::sync_with_stdio(false); \
-    cin.tie(nullptr)
+#define King ios_base::sync_with_stdio(0);
+#define T cin.tie(0); cout.tie(0);
 #define endl '\n'
 #define ll long long
-#define u unsigned 
 #define stc static_cast
-#define uo unordered
-#define fr(i, l, r) for(ll i=(l); i<(r); i++)
-#define frr(i, l, r) for(ll i=(l); i>=(r); i--)
-#define V vector
-#define vi vector<int>
 #define vll vector<ll>
-#define pii pair<int, int>
+#define vpll vector<pair<ll,ll>>
 #define pll pair<long long, long long>
-#define mii map<int, int>
 #define mll map<long long, long long>
-#define umll unordered_map<long long,long long>
-#define vvi vector<vector<int>>
-#define vvl vector<vector<long long>>
-#define all(v) v.begin(), v.end()
-#define sz(v) (int)v.size()
-#define srt(v) sort(v.begin(), v.end())
-#define maxEle(v) *max_element(v.begin(), v.end())
-#define minEle(v) *min_element(v.begin(), v.end())
+#define umll unordered_map<long long, long long>
 #define pb push_back
 #define ppb pop_back
 #define mp make_pair
@@ -45,105 +23,112 @@ using namespace std;
 #define ss second
 #define yes cout << "YES\n"
 #define no cout << "NO\n"
-#define one cout << "-1\n"
-#define done cout <<endl
-#define in(n) ll n; cin >> n;
-#define inn(n, k) ll n, k; cin >> n >> k;
-#define strin(s) string s; cin >> s;
-#define vin(a, n) vl a(n); for(ll i=0; i<(n); ++i) cin >> a[i];
-#define arra(a,n) ll a[n]; for(ll i=0; i<(n); ++i) cin >> a[i];
+#define one cout << "1\n"
+#define mone cout << "-1\n"
+#define zro cout << "0\n"
+#define ent cout << endl
+#define done return
+#define fr(i, l, r) for(ll i=(l); i<(r); i++)
+#define frr(i, r, l) for(ll i=(r-1); i>=l; i--)
+#define str(s) \
+    string s;    \
+    cin >> s
+#define in(n) ll n;cin>>n 
+#define inn(n,k) ll n,k;cin>>n>>k 
+#define vin(a, n)        \
+    vll a(n);              \
+    for(ll i = 0; i < n; i++) \
+    cin >> a[i];
+#define vout(a) for(auto x : a) { cout << x << ' '; } cout << '\n';
+#define out(a) cout << a << '\n';
+#define sze(x) ll((x).size())
+#define all(x) (x).begin(), (x).end()
+#define srt(x) sort((x).begin(), (x).end())
+#define rsrt(x) sort((x).rbegin(), (x).rend())
+#define rev(x) reverse(x.begin(),x.end())
+#define maxval(v) *max_element((v).begin(), (v).end())
+#define minval(v) *min_element((v).begin(), (v).end())
+#define maxid(v) max_element((v).begin(), (v).end()) - ((v).begin())
+#define minid(v) min_element((v).begin(), (v).end()) - ((v).begin())
+mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 
-//----- all imp const integers for use -----//
 const long long INF = 1e18 + 9;
 const int MOD = 1e9 + 7;
-const long long MOD1 = 989844166;
+const long long MOD1 = 998244353;
 
-//------ I don't know what is this for -----//
-
-#ifndef ONLINE_JUDGE
-#define debug(x) cerr << #x << " = "; _print(x); cerr << endl;
-#else
-#define debug(x)
-#endif
-
-template <typename T> void _print(T t) { cerr << t; }
-template <typename T, typename V> void _print(pair <T, V> p) { cerr << "{ "; _print(p.ff); cerr << ", "; _print(p.ss); cerr << " }"; }
-template <typename T> void _print(vector <T> v) { cerr << "[ "; for (T i : v) {_print(i); cerr << ' ';} cerr << " ]"; }
-template <typename T> void _print(set <T> v) { cerr << "[ "; for (T i : v) {_print(i); cerr << ' ';} cerr << " ]"; }
-template <typename T> void _print(multiset <T> v) { cerr << "[ "; for (T i : v) {_print(i); cerr << ' ';} cerr << " ]"; }
-template <typename T, typename V> void _print(map <T, V> v) { cerr << "[ "; for (auto i : v) {_print(i); cerr << ' ';} cerr << " ]"; }
-
-template<typename T, typename V> istream& operator>>(istream& cin, pair<T, V>& a) { return cin >> a.first >> a.second; }
-template<typename T> istream& operator>>(istream& cin, vector<T>& a) { for(auto& x : a) cin >> x; return cin; }
-template<typename T, typename V> ostream& operator<<(ostream& cout, const pair<T, V>& a) { return cout << a.first << ' ' << a.second; }
-template<typename T> ostream& operator<<(ostream& cout, const vector<T>& a) { for(const auto& x : a) cout << x << ' '; return cout; }
-
-
-
-//----- some function to use direct -----//
-
-ll gcd(ll a, ll b) { return (b == 0) ? a : gcd(b, a % b); }
-ll lcm(ll a, ll b) { return (a / gcd(a, b)) * b; }
-bool isPrime(ll n) {
+inline ll gcd(ll a, ll b) { while(b) { a %= b; swap(a, b); } return a; }
+inline ll lcm(ll a, ll b) { return ((a / gcd(a, b)) * b); }
+inline bool isPrime(ll n) {
     if(n <= 1) return false; if(n <= 3) return true; if(n % 2 == 0 || n % 3 == 0) return false;
-    for(ll i=5; i*i<=n; i+=6) { if(n % i == 0 || n % (i+2) == 0) return false;}
-    return true;
+    for(ll i=5; i*i<=n; i+=6) { if(n % i == 0 || n % (i+2) == 0) return false; } return true;
 }
-ll power(ll a, ll b) {
-    ll ans = 1; a %= MOD;
-    while(b > 0) { if(b & 1) { ans = (ans * a) % MOD; } a = (a * a) % MOD; b >>= 1; }
-    return ans;
+void prime(ll n, vector<bool>& ispr) {
+    ispr.resize(n+1, true); ispr[0] = ispr[1] = false;
+    for(ll i=2; i*i<=n; i++) { if(ispr[i]) { for(ll j=i*i; j<=n; j+=i) { ispr[j] = false; } } }
 }
-bool isPowOfTwo(ll n) { return n > 0 && (n & (n-1)) == 0; }
-bool isPerfectSq(ll n) { if(n < 0) return false; ll sr = stc<int>(sqrt(n)); return (sr*sr == n); }
-bool cmpBySs(const pair<int, int>& a, const pair<int, int>& b) { return a.second < b.second; }
-ll modSum(ll a, ll b) { return (a % MOD + b % MOD) % MOD; }
-ll modSub(ll a, ll b) { return ((a % MOD - b % MOD) + MOD) % MOD; }
-ll modMult(ll a, ll b) { return (a % MOD * b % MOD) % MOD; }
-ll turnOnBit(ll n, int pos) { return n | (1LL << pos); }
-ll turnOffBit(ll n, int pos) { return n & ~(1LL << pos); }
-bool checkBit(ll n, int pos) { return n & (1LL << pos); }
-bool angstorm(ll n){
-ll z=n;
-ll digit=(int)(log10(n)+1);
-ll sum=0;
-while(z>0){
-    ll r=z%10;
-    for(int i=1;i<digit;i++){
-       r*=(z%10);
-    }
-    sum+=r;
-    z/=10;
+void prime(ll n, vector<ll>& pr) {
+    vector<bool> ispr; prime(n, ispr); for(ll i=2; i<=n; i++) { if(ispr[i]) { pr.push_back(i); } }
 }
-if(sum==n){return true;}
-return false;
+inline ll power(ll a, ll b, ll mod = MOD) {
+    ll ans = 1; a %= mod; while(b > 0) { if(b & 1) { ans = (ans * a) % mod; } a = (a * a) % mod; b >>= 1; } return ans;
 }
+inline void factorial(ll n, vector<ll>& a) { a.resize(n+1, 1); for(ll i=1; i<=n; i++) { a[i] = (a[i-1] * i) % MOD; } }
+inline bool isPowOfTwo(ll n) { return ((n > 0) && !(n & (n-1))); }
+inline bool isPerfectSq(ll n) { if(n < 0) return false; ll sr = static_cast<ll>(sqrt(n)); return (sr*sr == n); }
+inline bool compbyss(pair<ll, ll> a, pair<ll, ll> b) { return a.second < b.second; }
+inline bool comprev(pair<ll,ll> a, pair<ll,ll> b){if(a.ff==b.ff){return a.ss<b.ss;} else{return a.ff>b.ff;}}
+inline ll modadd(ll a, ll b, ll mod = MOD) { return ((a % mod + b % mod) % mod); }
+inline ll modmult(ll a, ll b, ll mod = MOD) { return ((a % mod * b % mod) % mod); }
+inline ll modinv(ll a, ll mod = MOD) { return power(a, mod-2, mod); }
+inline ll moddiv(ll a, ll b, ll mod = MOD) { return modmult(a, modinv(b, mod), mod); }
+inline ll msbPos(ll n) { if(n == 0) { return -1; } return (63 - (__builtin_clzll(n))); }
+inline ll getBit(ll n, ll pos) { return ((n >> pos) & 1); }
+inline ll setBit(ll n, ll pos) { return (n | (1 << pos)); }
+inline ll clearBit(ll n, ll pos) { return (n & (~(1 << pos))); }
+inline ll toggleBit(ll n, ll pos) { return (n ^ (1 << pos)); }
 
-// -------------code starts here ------------- //
+// =-=-=-=-=-=-=-=-=-=-=-=-=-code starts here -=-=-=-=-=-=-=-=-=-=-=-=-= //
 
-void idharDekh(){
-   ll n;
-   cin>>n;
-   while(n--){
-    ll m;
-    cin>>m;
-    ll a[m];
-    ll min1=1e9+1,secmin1=1e9+1;
-    fr(i,0,m){
-        cin>>a[i];
-        if(a[i]<min1){
-            secmin1=min1;
-            min1=a[i];
+void idharDekh()
+{
+    in(n);
+    ll sum=0;
+    ll ans=-1;
+    ll c=INT_MAX,b=INT_MAX;
+    while(n--){
+        in(m);
+        vin(a,m);
+        ll temp1=a[0],temp2=INT_MAX;
+        fr(i,1,m){
+           if(a[i]<temp1){
+            temp2=temp1;
+            temp1=a[i];
+           }
+           else{
+            temp2=min(temp2,a[i]);
+           }
         }
+        sum+=temp2;
+       c=min(c,temp1);
+       b=min(b,temp2);
     }
-   }
+    sum-=b;
+    sum+=c;
+    out(sum);
 }
 
-
-signed main(){
-    King(T);
-    int t = 1;
+signed main()
+{
+    auto begin = std::chrono::high_resolution_clock::now();
+    King T
+    ll t = 1;
     cin >> t;
-    while (t--){idharDekh();}
+    while (t--)
+    {
+        idharDekh();
+    }
+    auto end = std::chrono::high_resolution_clock::now();
+    auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+    cerr << "Time measured: " << elapsed.count() * 1e-9 << " seconds.\n";
     return 0;
 }

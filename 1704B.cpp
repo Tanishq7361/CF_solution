@@ -1,5 +1,5 @@
 /*
-    Created : 02.04.2025  00:44:05
+    Created : 03.04.2025  00:47:00
 */
 
 #include <bits/stdc++.h>
@@ -89,39 +89,22 @@ inline ll toggleBit(ll n, ll pos) { return (n ^ (1 << pos)); }
 
 // =-=-=-=-=-=-=-=-=-=-=-=-=-code starts here -=-=-=-=-=-=-=-=-=-=-=-=-= //
 
-unordered_map<string,ll>mpp;
-string fir(string &s);
-string sec(string &s);
-string fir(string &s1){
-    if(s1.size()==0){
-        return "";
-    }
-    s1.erase(s1.begin(),s1.begin()+1);
-    mpp[s1]++;
-    mpp[fir(s1)]++;
-    mpp[sec(s1)]++;
-    return s1;
-}
-string sec(string &s1){
-    if(s1.size()==0){
-        return "";
-    }
-    s1.erase(s1.begin(),s1.begin()+1);
-    mpp[s1]++;
-    mpp[fir(s1)]++;
-    mpp[sec(s1)]++;
-    return s1;
-}
-
 void idharDekh()
 {
-    in(n);
-    str(s);
-    mpp[s]++;
-    mpp[fir(s)]++;
-    mpp[sec(s)]++;
-    cout<<mpp.size()-1<<endl;    
-    mpp.clear();
+    inn(n,k);
+    vin(a,n);
+    ll ct=0;
+    ll temp1=a[0],temp2=a[0];
+    fr(i,0,n){
+        temp1=max(a[i],temp1);
+        temp2=min(a[i],temp2);
+        if(temp1-temp2>2*k){
+            temp1=a[i];
+            temp2=a[i];
+            ct++;
+        }
+    }
+    out(ct);
 }
 
 signed main()
