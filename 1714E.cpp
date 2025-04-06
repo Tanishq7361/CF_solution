@@ -1,5 +1,5 @@
 /*
-    Created : 05.04.2025  19:55:17
+    Created : 06.04.2025  19:04:34
 */
 
 #include <bits/stdc++.h>
@@ -93,38 +93,49 @@ void idharDekh()
 {
     in(n);
     vin(a,n);
-    ll z=minval(a);
-    vll ans;
-    ll ct=0;
-    fr(i,0,n){
-        if(a[i]==z){
-            ct++;
-        }
-        if(a[i]!=z && a[i]%z==0){
-            ans.pb(a[i]);
-        }
-    }
-    if(ct>1){
+    srt(a);
+    if(a[0]==a[n-1]){
         yes;
         done;
     }
-    if(ans.size()==1 || ans.size()==0){
-        no;
+    fr(i,0,n-1){
+        if(a[i]%10==0 && a[i]!=a[n-1]){
+            no;
+            done;
+        }
+    }
+    if(a[n-1]%10==0){
+        fr(i,0,n){
+            if(a[i]%10==5 && a[i]==a[n-1]-5){
+                continue;
+            }
+            else if(a[i]==a[n-1]){
+                continue;
+            }
+            else{
+                no;
+                done;
+            }
+        }
+        yes;
         done;
     }
-    else{
-        ll y=ans[0];
-        for(auto x: ans){
-            y=gcd(y,x);
-        }
-        if(z==y){
-            yes;
-        }
-        else{
+    fr(i,0,n){
+        if(a[i]%10==5){
             no;
+            done;
+        }
+        while(a[i]%10!=2){
+            a[i]=a[i]+a[i]%10;
         }
     }
-
+    fr(i,0,n){
+        if((a[n-1]-a[i])%20!=0){
+            no;
+            done;
+        }
+    }
+    yes;
 }
 
 signed main()
