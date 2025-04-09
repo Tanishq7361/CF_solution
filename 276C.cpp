@@ -1,5 +1,5 @@
 /*
-    Created : 10.04.2025  00:20:12
+    Created : 10.04.2025  01:53:15
 */
 
 #include <bits/stdc++.h>
@@ -91,18 +91,34 @@ inline ll toggleBit(ll n, ll pos) { return (n ^ (1 << pos)); }
 
 void idharDekh()
 {
-    ll n, l, r, x;
-    cin >> n >> l >> r >> x;
-    umll mpp;
-    vll a(n);
-    fr(i, 0, n){
-        cin >> a[i];
+    inn(n,q);
+    vin(a,n);
+    srt(a);
+    mll mpp;
+    vll pref(n+1,0);
+    vll pref2(n+1,0);
+    fr(i,1,n+1){
+        pref2[i]+=pref2[i-1]+a[i-1];
     }
-    fr(i,0,n){
-        fr(j,i,n){
-            
-        }
+    fr(i,0,q){
+        ll a,b;
+        cin>>a>>b;
+        a--,b--;
+        pref[a]++;
+        pref[b+1]--;
     }
+    mpp[pref[0]]++;
+    fr(i,1,n){
+        pref[i]+=pref[i-1];
+        mpp[pref[i]]++;
+    }
+    ll ans=0;
+    ll j=0;
+    for(auto x:mpp){
+        ans+=(pref2[j+x.ss]-pref2[j])*x.ff;
+        j+=x.ss;
+    }
+    out(ans);
 }
 
 signed main()
@@ -110,7 +126,7 @@ signed main()
     auto begin = std::chrono::high_resolution_clock::now();
     King T
     ll t = 1;
-    cin >> t;
+    //cin >> t;
     while (t--)
     {
         idharDekh();

@@ -1,5 +1,5 @@
 /*
-    Created : 10.04.2025  00:20:12
+    Created : 10.04.2025  00:28:43
 */
 
 #include <bits/stdc++.h>
@@ -91,18 +91,60 @@ inline ll toggleBit(ll n, ll pos) { return (n ^ (1 << pos)); }
 
 void idharDekh()
 {
-    ll n, l, r, x;
-    cin >> n >> l >> r >> x;
-    umll mpp;
-    vll a(n);
-    fr(i, 0, n){
-        cin >> a[i];
-    }
+    str(s);
+    ll n=s.size();
+    ll j;
     fr(i,0,n){
-        fr(j,i,n){
-            
+        if(s[i]=='0' || s[i]=='8'){
+            yes;
+            out(s[i]);
+            done;
         }
     }
+    while(s.size()>0){
+        if(s.size()==2){
+            ll z=(s[0]-48)*10;
+            z+=s[1]-48;
+            if(z%8==0){
+               yes;
+               out(z);
+               done;
+            }
+            else{
+                no;
+                done;
+            }
+        }
+        if(s.back()&1 || s.back()=='0'){
+            
+        }
+        else{
+            n=s.size();
+            fr(i,0,n-1){
+                ll z=(s[i]-48)*10;
+                z+=s[n-1]-48;
+                if(z%8==0){
+                    yes;
+                    cout<<z<<endl;
+                    done;
+                }
+                else if(z%4==0){
+                    fr(k,0,i){
+                        z+=100*(s[k]-48);
+                        if(z%8==0){
+                            yes;
+                            out(z);
+                            done;
+                        }
+                        z-=100*(s[k]-48);
+                    }
+                }
+            }
+        }
+        s.pop_back();
+    }
+    no;
+    done;
 }
 
 signed main()
@@ -110,7 +152,7 @@ signed main()
     auto begin = std::chrono::high_resolution_clock::now();
     King T
     ll t = 1;
-    cin >> t;
+    //cin >> t;
     while (t--)
     {
         idharDekh();

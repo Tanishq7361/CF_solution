@@ -1,5 +1,5 @@
 /*
-    Created : 10.04.2025  00:20:12
+    Created : 10.04.2025  00:09:30
 */
 
 #include <bits/stdc++.h>
@@ -91,18 +91,12 @@ inline ll toggleBit(ll n, ll pos) { return (n ^ (1 << pos)); }
 
 void idharDekh()
 {
-    ll n, l, r, x;
-    cin >> n >> l >> r >> x;
-    umll mpp;
-    vll a(n);
-    fr(i, 0, n){
-        cin >> a[i];
+    in(n);
+    if(n<4){
+        mone;
+        done;
     }
-    fr(i,0,n){
-        fr(j,i,n){
-            
-        }
-    }
+    
 }
 
 signed main()
