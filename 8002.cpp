@@ -150,6 +150,9 @@ inline bool comprev(pair<ll, ll> a, pair<ll, ll> b)
         return a.ff > b.ff;
     }
 }
+// rotate(v.begin(),v.begin()+v.size()-r,v.end()); for rotating vector r times right
+// rotate(v.begin(),v.begin()+r,v.end()); for rotating vector r times left
+
 inline ll modadd(ll a, ll b, ll mod = MOD) { return ((a % mod + b % mod) % mod); }
 inline ll modmult(ll a, ll b, ll mod = MOD) { return ((a % mod * b % mod) % mod); }
 inline ll modinv(ll a, ll mod = MOD) { return power(a, mod - 2, mod); }
@@ -166,7 +169,7 @@ inline ll getBit(ll n, ll pos) { return ((n >> pos) & 1); }
 inline ll setBit(ll n, ll pos) { return (n | (1 << pos)); }
 inline ll clearBit(ll n, ll pos) { return (n & (~(1 << pos))); }
 inline ll toggleBit(ll n, ll pos) { return (n ^ (1 << pos)); }
-////////////////////////////////////////////////////////////////////
+
 struct Node   // SLL
 {
     ll data;
@@ -262,7 +265,15 @@ void matpow(ll F[2][2],ll n){
     // matpow(F,n-1);
     // cout<<F[0][0]<<endl;
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////
+
+ll ask(ll l, ll r) // for interactive
+{
+    cout << "? " << l << ' ' << r << endl;
+    fflush(stdout);
+    ll ans;
+    cin >> ans;
+    return ans;
+}
 
 void idharDekh()
 {
